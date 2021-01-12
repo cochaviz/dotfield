@@ -1,3 +1,7 @@
 ## [0.0.1] - 12 january 2021
 
-* Initial realease. Creates a field of dots, with lines drawn between them if they're close enough.
+* Initial release. Creates a field of dots, with lines drawn between them if they're close enough.
+
+## [0.0.2] - 12 january 2021
+
+* Updated license. Nothing intersting, just move on.
