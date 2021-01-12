@@ -19,8 +19,8 @@ class DotField extends StatefulWidget {
     this.maxLineLength = 75,
     this.lineWidth = .5,
   }) {
-    int numberOfDots = (.00001 * size.width * size.height).round() * density;
-    for (int i = 0; i < numberOfDots; i++) {
+    var numberOfDots = (.00001 * size.width * size.height).round() * density;
+    for (var i = 0; i < numberOfDots; i++) {
       dots.add(
         Dot.generateSimilarDot(
           color: dotColor,
@@ -105,11 +105,11 @@ class Dot extends DotPhys {
     Offset direction,
     double maxSpeed,
   }) {
-    this.position = Utils.toVector(initialPosition);
-    this.speed = Utils.toVector(direction);
-    this.speed.normalize();
-    this.speed.scale(initialSpeed);
-    this.maxSpeed = maxSpeed;
+    position = Utils.toVector(initialPosition);
+    speed = Utils.toVector(direction);
+    speed.normalize();
+    speed.scale(initialSpeed);
+    maxSpeed = maxSpeed;
   }
 
   /*
@@ -122,17 +122,17 @@ class Dot extends DotPhys {
     double maxSpeed,
     Size rangeOfMotion,
   }) {
-    Random random = Random();
+    var random = Random();
 
     // Generate random initial direction
-    double dx = random.nextBool() ? -random.nextDouble() : random.nextDouble();
-    double dy = random.nextBool() ? -random.nextDouble() : random.nextDouble();
-    Offset direction = Offset(dx, dy);
+    var dx = random.nextBool() ? -random.nextDouble() : random.nextDouble();
+    var dy = random.nextBool() ? -random.nextDouble() : random.nextDouble();
+    var direction = Offset(dx, dy);
 
     // Random speed
-    double speed = minSpeed + (maxSpeed - minSpeed) * random.nextDouble();
+    var speed = minSpeed + (maxSpeed - minSpeed) * random.nextDouble();
 
-    Dot generatedDot = Dot(
+    var generatedDot = Dot(
       color: color,
       size: size,
       initialSpeed: speed,
@@ -150,7 +150,7 @@ class Dot extends DotPhys {
   Places a dot in a random place somewhere in the given size
   */
   void _placeIn(Size size) {
-    Random random = Random();
+    var random = Random();
 
     position.x = random.nextDouble() * size.width;
     position.y = random.nextDouble() * size.height;
@@ -194,16 +194,16 @@ class DotPhys {
   */
   void stepConstrained(
       double stepSize, Size bounds, double threshold, double strength) {
-    vm.Vector2 up = vm.Vector2(0, -1);
+    var up = vm.Vector2(0, -1);
     up.scale(1 / (max(0.1, bounds.height - (position.y + threshold))));
-    vm.Vector2 down = vm.Vector2(0, 1);
+    var down = vm.Vector2(0, 1);
     down.scale(1 / (max(0.1, position.y - threshold)));
-    vm.Vector2 left = vm.Vector2(-1, 0);
+    var left = vm.Vector2(-1, 0);
     left.scale(1 / (max(0.1, bounds.width - (position.x + threshold))));
-    vm.Vector2 right = vm.Vector2(1, 0);
+    var right = vm.Vector2(1, 0);
     right.scale(1 / (max(0.1, position.x - threshold)));
 
-    vm.Vector2 force = up + down + left + right;
+    var force = up + down + left + right;
     force.scale(strength);
     stepForce(stepSize, force);
   }
@@ -218,30 +218,35 @@ class DotFieldPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     if (dotField.dots.isEmpty) return;
 
-    if (dotField.maxLineLength == 0)
+    if (dotField.maxLineLength == 0) {
       paintWithoutLines(canvas);
-    else
+    } else {
       paintWithLines(canvas);
+    }
   }
 
   void paintWithLines(Canvas canvas) {
-    Paint dotPaint = Paint();
+    var dotPaint = Paint();
     dotPaint.color = dotField.dotColor;
     dotPaint.style = PaintingStyle.fill;
 
-    Paint linePaint = Paint();
+    var linePaint = Paint();
     linePaint.color = dotField.lineColor;
     linePaint.strokeWidth = dotField.lineWidth;
 
     dotField.dots.forEach((dot) {
-      Offset position = Utils.toOffset(dot.position);
+      var position = Utils.toOffset(dot.position);
 
       dotField.dots.forEach((neighbour) {
-        if (dot == neighbour) return;
+        if (dot == neighbour) {
+          return;
+        }
+
         if (dot.position.distanceTo(neighbour.position) <
-            dotField.maxLineLength)
+            dotField.maxLineLength) {
           canvas.drawLine(Utils.toOffset(dot.position),
               Utils.toOffset(neighbour.position), linePaint);
+        }
       });
 
       canvas.drawCircle(position, dot.size, dotPaint);
@@ -249,12 +254,12 @@ class DotFieldPainter extends CustomPainter {
   }
 
   void paintWithoutLines(Canvas canvas) {
-    Paint paint = Paint();
+    var paint = Paint();
     paint.color = dotField.dotColor;
     paint.style = PaintingStyle.fill;
 
     dotField.dots.forEach((dot) {
-      Offset position = Utils.toOffset(dot.position);
+      var position = Utils.toOffset(dot.position);
 
       canvas.drawCircle(position, dot.size, paint);
     });
