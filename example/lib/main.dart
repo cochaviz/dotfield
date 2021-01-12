@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/dotfield.dart';
+import 'package:dotfield/dotfield.dart';
 
 void main() {
   runApp(MyApp());
