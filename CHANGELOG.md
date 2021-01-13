@@ -5,3 +5,7 @@
 ## [0.0.2] - 12 january 2021
 
 * Updated license. Nothing intersting, just move on.
+
+## [0.0.3] - 13 january 2021
+
+* Improved code style, better showcase, corrects some spelling
