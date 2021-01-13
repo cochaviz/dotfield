@@ -87,7 +87,7 @@ class _DotFieldState extends State<DotField> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: DotFieldPainter(dotField: this.widget),
+      painter: DotFieldPainter(dotField: widget),
       child: Container(),
     );
   }

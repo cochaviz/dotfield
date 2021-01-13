@@ -1,4 +1,4 @@
-name: dotfield
+name: example
 description: Create a field of dots. More awesome than it sounds!
 version: 0.0.2
 homepage: https://github.com/zoharcochavi/dotfield
@@ -11,11 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
   vector_math: ^2.0.8
+  dotfield:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

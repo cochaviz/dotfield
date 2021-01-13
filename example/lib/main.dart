@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotfield/dotfield.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,12 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dotfield Example App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(title: 'Demo of the Dotfield package'),
     );
   }
 }
@@ -31,10 +33,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    // Disable top status bar
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return Scaffold(
       backgroundColor: Colors.black87,
       body: DotField(
         size: MediaQuery.of(context).size,
+        density: 50,
+        maxLineLength: 40,
+        threshold: 20,
+        minSpeed: 10,
+        maxSpeed: 10,
       ),
     );
   }
