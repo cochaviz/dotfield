@@ -9,3 +9,7 @@
 ## [0.0.3] - 13 january 2021
 
 * Improved code style, better showcase, corrects some spelling
+
+## [1.0.3] - 13 january 2021
+
+* Final version for now, fix broken showcase link
