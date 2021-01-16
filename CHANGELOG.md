@@ -13,3 +13,7 @@
 ## [1.0.3] - 13 january 2021
 
 * Final version for now, fix broken showcase link
+
+## [1.0.4] - 16 january 2021
+
+* Fixes fatal null pointer exception
