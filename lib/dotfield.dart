@@ -109,7 +109,7 @@ class Dot extends DotPhys {
     speed = Utils.toVector(direction);
     speed.normalize();
     speed.scale(initialSpeed);
-    maxSpeed = maxSpeed;
+    this.maxSpeed = maxSpeed;
   }
 
   /*
