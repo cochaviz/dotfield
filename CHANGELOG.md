@@ -17,3 +17,7 @@
 ## [1.0.4] - 16 january 2021
 
 * Fixes fatal null pointer exception
+
+## [2.0.0] - 21 august 2021
+
+* Support null safety
