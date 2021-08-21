@@ -1,5 +1,7 @@
 # dotfield
 
+[![zoharcochavi](https://circleci.com/gh/zoharcochavi/dotfield.svg?style=shield)](https://app.circleci.com/pipelines/github/zoharcochavi/dotfield)
+
 Create a field of dots! Looks more awesome than it sounds!
 
 Inspired by [particleground](https://github.com/jnicol/particleground)
