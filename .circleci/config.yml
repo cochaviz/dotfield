@@ -1,0 +1,30 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: cirrusci/flutter
+    steps:
+      - checkout
+      - run: flutter doctor
+      - run: flutter test
+  publish:
+    docker:
+      - image: cirrusci/flutter
+    steps:
+      - checkout
+      - run: dart pub publish -n
+
+workflows:
+  version: 2
+  release:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
+      - publish:
+          filters:
+            tags:
+              only: '^v*'
