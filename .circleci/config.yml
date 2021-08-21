@@ -13,7 +13,7 @@ jobs:
       - image: cirrusci/flutter
     steps:
       - checkout
-      - run: dart pub publish -n
+      - run: dart pub publish
 
 workflows:
   version: 2
