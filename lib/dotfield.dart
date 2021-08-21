@@ -7,7 +7,7 @@ import 'package:vector_math/vector_math.dart' as vm;
 
 class DotField extends StatefulWidget {
   DotField({
-    @required this.size,
+    required this.size,
     this.density = 100,
     this.minSpeed = 10,
     this.maxSpeed = 20,
@@ -55,8 +55,8 @@ class _DotFieldState extends State<DotField> with TickerProviderStateMixin {
   _DotFieldState();
 
   double timeStep = 0.01;
-  Animation animation;
-  AnimationController controller;
+  Animation? animation;
+  late AnimationController controller;
 
   @override
   void initState() {
@@ -87,7 +87,7 @@ class _DotFieldState extends State<DotField> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: DotFieldPainter(dotField: widget),
+      painter: DotFieldPainter(widget),
       child: Container(),
     );
   }
@@ -98,29 +98,27 @@ class Dot extends DotPhys {
   final double size;
 
   Dot({
-    this.color,
-    this.size,
-    Offset initialPosition,
-    double initialSpeed,
-    Offset direction,
-    double maxSpeed,
-  }) {
-    position = Utils.toVector(initialPosition);
-    speed = Utils.toVector(direction);
-    speed.normalize();
-    speed.scale(initialSpeed);
-    this.maxSpeed = maxSpeed;
-  }
+    required this.color,
+    required this.size,
+    required Offset initialPosition,
+    required double initialSpeed,
+    required Offset direction,
+    required double maxSpeed,
+  }) : super(
+          Utils.toVector(initialPosition),
+          Utils.toVector(direction).normalized().scaled(initialSpeed),
+          maxSpeed,
+        );
 
   /*
   Generates a dot similar to the given values deviating by sigma
   */
   static Dot generateSimilarDot({
-    Color color,
-    double size,
-    double minSpeed,
-    double maxSpeed,
-    Size rangeOfMotion,
+    required Color color,
+    required double size,
+    required double minSpeed,
+    required double maxSpeed,
+    required Size rangeOfMotion,
   }) {
     var random = Random();
 
@@ -162,7 +160,11 @@ class DotPhys {
   vm.Vector2 speed;
   double maxSpeed;
 
-  DotPhys({this.position, this.speed, this.maxSpeed});
+  DotPhys(
+    this.position,
+    this.speed,
+    this.maxSpeed,
+  );
 
   /* 
   Iterate simulation by one timeStep of stepSize, without any external forces acting upon the object
@@ -210,7 +212,7 @@ class DotPhys {
 }
 
 class DotFieldPainter extends CustomPainter {
-  DotFieldPainter({this.dotField});
+  DotFieldPainter(this.dotField);
 
   DotField dotField;
 
